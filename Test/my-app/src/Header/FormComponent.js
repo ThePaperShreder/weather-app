@@ -8,14 +8,19 @@ export default function FormComponent(props) {
   const formElement = useRef(null);
 
   useEffect(() => {
-    if(props.form === null) {
+    if(props.form === null && !props.cookie) {
       props.setForm({
         city: props.selectedCity,
         unit: props.unit,
         language: props.language,
       });
-    }}
-  );
+      props.setCookie('weather', {
+        city: props.selectedCity,
+        unit: props.unit,
+        language: props.language,
+      })
+    }
+  });
   
  
   function OnInput () {
@@ -75,6 +80,7 @@ export default function FormComponent(props) {
                               type="Checkbox"
                               name="dataType"
                               defaultChecked={isSelected}
+                              disabled={true}
                               label={dtype.label}
                               defaultValue={dtype.value}
                           />)           

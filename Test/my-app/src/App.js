@@ -4,8 +4,9 @@ import './App.css';
 import { Container, Row, Col} from 'react-bootstrap'
 import HeaderComponent from './Header/HeaderComponent';
 import dataTypes from './Header/type.json';
-import MapComponent from './Body/MapComponent';
+// import MapComponent from './Body/MapComponent';
 import { useCookies } from 'react-cookie';
+import BodyComponent from './Body/BodyComponent';
 
 
 function App() { 
@@ -45,12 +46,14 @@ function App() {
       <HeaderComponent handleOnSubmitForm={handleOnSubmit} 
       setForm={setForm} 
       form={form} 
+      setCookie={setCookie}
       cookie={cookies.weather}/>
     </Col>
   </Row>
   <Row>
     <Col>
-      <MapComponent form={form} cookie={cookies.weather} />
+      <BodyComponent form={form} cookie={cookies.weather} />
+      {/* <MapComponent form={form} cookie={cookies.weather} /> */}
     </Col>
   </Row>
 </Container>
