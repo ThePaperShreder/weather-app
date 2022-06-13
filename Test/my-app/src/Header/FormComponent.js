@@ -6,13 +6,7 @@ import dataTypes from './type.json';
 export default function FormComponent(props) {
 
   const formElement = useRef(null);
-//useRef eto hook, kak sposob poluchit dostub v DOM (virtualDOM eto v VSC)
-//chtobi  naznachit s kakoi element mi budem ssilatsa, ispolzuet atribut v ref={} v html
-//mi poluchaem vsjo derevo DOM v objekte current(formElement.current)
 
-//useEffect ispolzuetsa dlya raboti s DOM
-//useEffect zapuskaetsa posle togo kak render componenta zakonchilsa
-//useEffect ne lijaet na sam componnet, ne zauskaet rerender ili render
   useEffect(() => {
     if(props.form === null) {
       props.setForm({
@@ -23,34 +17,14 @@ export default function FormComponent(props) {
     }}
   );
   
- //onInput zapuskaetsa pri videnii danni ot polzovatelja v input html tag.
- //onInput tolko sushestvuet v formah i input tag
-
+ 
   function OnInput () {
-//funktsija kotoraja berjot ssilku na element (form) DOM, i naznachaet emu novoe sobitie 
-// eto novoe sobitie zapuskaet submit funktsiju Formi
+
     formElement.current.dispatchEvent(
       new Event("submit", { cancelable: true, bubbles: true })
     );
   }
-//onInput i onSubmit eventi kotorii zaouskaut brauser
-//sobitija html - sobitija kotorie proishodjat s elementami html
-//sobtija ishodjat iz brausera i is polzovatelja
-// u sobitija dolzhn bit obrabotchik - finktsija JS
-//sobitija peredaet obrabotchiku 1.DOM strukturu dannogo elementa na kotorom visit sobitie
-//event.target
 
-
-//Form ispolzueetsa dlya polcheija dannih ot pozovatelja i poslat ih na server dlya obrabotki
-//Form dlya etogo isolzuet dva glavnih protokola Post i Get
-//Post dlya otpravki dannih
-//get dlya poluchenija
-// po umolchaniju on otpravlaet dannie cherez method post
-//esli mi hotim izmenit, mi propisivaem atribut method="Get"
-//v forme ispolzuutsa enput tegi dlya sbora dannih
-
-//key - v Reacte dolzhen bit unikalnim, dlya otslezhivanija ljubim izmenenii vkomponente
-//tem samim renderit to chto re obhodimo
   return (
         <Container>
             <Form method="GET" ref={formElement} onInput={OnInput} onSubmit={props.handleOnSubmitForm}>
