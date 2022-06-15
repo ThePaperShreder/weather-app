@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DataComponent from './DataComponent';
 import MapComponent from './MapComponent';
-import { getCurrentWeather } from '../apiServices/weatherServices';
+import { getCurrentWeather, getForecastWeather } from '../apiServices/weatherServices';
 
 export default function BodyComponent (props) {
 
@@ -27,7 +27,7 @@ export default function BodyComponent (props) {
 
     return (
         <>
-          <DataComponent {...props} />
+          <DataComponent {...props} weather={weather} />
           {weather && (<MapComponent {...props} weather={weather} />)}
         </>
     )

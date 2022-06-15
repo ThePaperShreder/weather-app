@@ -20,8 +20,8 @@ function App() {
     const city = event.target.city.value;
     const unit = event.target.unit.value;
     let selectedTypes = [];
+    
     for (const dtype of event.target.dataType) {
-
       if(dtype.checked === true) {
         selectedTypes.push(dtype.value);
       }
@@ -41,22 +41,22 @@ function App() {
 
   return (
     <Container>
-    <Row>
-    <Col>
-      <HeaderComponent handleOnSubmitForm={handleOnSubmit} 
-      setForm={setForm} 
-      form={form} 
-      setCookie={setCookie}
-      cookie={cookies.weather}/>
-    </Col>
-  </Row>
-  <Row>
-    <Col>
-      <BodyComponent form={form} cookie={cookies.weather} />
-      {/* <MapComponent form={form} cookie={cookies.weather} /> */}
-    </Col>
-  </Row>
-</Container>
+      <Row>
+        <Col>
+          <HeaderComponent handleOnSubmitForm={handleOnSubmit} 
+          setForm={setForm} 
+          form={form} 
+          setCookie={setCookie}
+          cookie={cookies.weather}/>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <BodyComponent form={form} cookie={cookies.weather} />
+          {/* <MapComponent form={form} cookie={cookies.weather} /> */}
+        </Col>
+      </Row>
+    </Container>
     
   );
 }
