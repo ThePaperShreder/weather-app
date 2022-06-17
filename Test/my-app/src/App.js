@@ -40,6 +40,7 @@ function App() {
     setCookie('weather', updateData);
 }
 
+//ostavili header component statichnim pri izmenenii ssilki 
   return (
     <Container>
       <Row>
@@ -53,6 +54,12 @@ function App() {
       </Row>
       <Row>
         <Col>
+        {/* v nutri komponeneta routes mi propisivaem nashi ssilki. Kazhdaja ssilka eto route component,
+         kotorii zapuskaetsa pri zahode opredeljonnoi v path.
+         v element propisivaetsa tot component kotorii dolzhen obrabotatsa.
+         chtobi peredat ljuboi parametr v ljuboi component v Route path pishitsa : i nzavanie peremennoi
+         :city = Tallinn
+         */}
           <Routes>
             <Route path="/" element={<CurrentComponent form={form} cookie={cookies.weather} />}/>
             <Route path="/Current/:city" element={<CurrentComponent form={form} cookie={cookies.weather} />}/>

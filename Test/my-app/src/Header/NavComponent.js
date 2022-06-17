@@ -13,6 +13,9 @@ export default function NavComponent() {
                 <Navbar.Collapse id="navbar-dark-example">
                     <Nav className="me-auto" navbarScroll>
 
+{/* Link zapuskaet obrabotku pravelnogo componenta 
+bez link terjaetsa smisl react route, tak kak obichnii alink
+perezapuskaet vsju stranitsu */}
                         <Link className="nav-link" to="/">Home</Link>
                         <Link className="nav-link" to="/current/0">Tallinn</Link>
                         <Link className="nav-link" to="/current/1">Tartu</Link>
