@@ -7,12 +7,18 @@ export default function DataComponent (props) {
 	function generateRows() {
 		if(props.weather) {
 		const tr = [];
-		for (const [ key, value ] of Object.entries(props.weather.main)){
+		for (const [ key, value ] of Object.entries(props.weather.main)) {
 				tr.push (<tr key={key}>
-							<td>{sentenceCase(key)}</td>
-							<td>{value}</td>
-							</tr>)
-				}   
+					<td>{sentenceCase(key)}</td>
+					<td>{value}</td>
+					</tr>);
+		}
+				tr.push (<tr key="Description">
+					<td>Description</td>
+					<td>{props.weather.weather[0].description}</td>
+					</tr>);
+			   
+				
 			return tr;    
 		}
 	}

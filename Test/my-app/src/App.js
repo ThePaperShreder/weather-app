@@ -6,8 +6,9 @@ import HeaderComponent from './Header/HeaderComponent';
 import dataTypes from './Header/type.json';
 // import MapComponent from './Body/MapComponent';
 import { useCookies } from 'react-cookie';
-import BodyComponent from './Body/BodyComponent';
-
+import CurrentComponent from './Body/CurrentComponent';
+import ForecastComponent from './Body/ForecastComponent'
+import { Routes, Route } from 'react-router-dom'
 
 function App() { 
 
@@ -52,8 +53,12 @@ function App() {
       </Row>
       <Row>
         <Col>
-          <BodyComponent form={form} cookie={cookies.weather} />
-          {/* <MapComponent form={form} cookie={cookies.weather} /> */}
+          <Routes>
+            <Route path="/" element={<CurrentComponent form={form} cookie={cookies.weather} />}/>
+            <Route path="/Current/:city" element={<CurrentComponent form={form} cookie={cookies.weather} />}/>
+            <Route path="/forecast" element={<ForecastComponent form={form} cookie={cookies.weather} />}/>
+            {/* <MapComponent form={form} cookie={cookies.weather} /> */}
+          </Routes>
         </Col>
       </Row>
     </Container>
