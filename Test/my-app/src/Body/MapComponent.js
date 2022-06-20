@@ -21,19 +21,17 @@ export default function MapComponent (props) {
       };
     return (
         <>
-            {isLoaded &&(
+            {isLoaded && (
                 <GoogleMap
                 mapContainerStyle={containerStyle}
                 center={center}
                 zoom={10}
                 >
-                    <InfoWindow position={center}>                     
-                      <div style={{ backgroundColor: 'white', opacity: 0.55, padding: 6 }}>
+                  {props.weather.main && (<InfoWindow position={center}>
                         <div style={{ fontSize: 20, fontColor: `#e0cad0` }}>
                           {props.weather.main.temp}
-                        </div>
-                      </div>
-                    </InfoWindow>           
+                        </div>                      
+                        </InfoWindow>)}      
                 </GoogleMap>
             )}
         </>
