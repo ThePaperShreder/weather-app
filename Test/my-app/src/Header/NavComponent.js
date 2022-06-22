@@ -14,6 +14,7 @@ export default function NavComponent() {
                     <Nav className="me-auto" navbarScroll>
 
                         <Link className="nav-link" to="/">Home</Link>
+                        <Link className="nav-link" to="/forecast">Forecast</Link>
                         <Link className="nav-link" to="/current/tallinn">Tallinn</Link>
                         <Link className="nav-link" to="/current/tartu">Tartu</Link>
                         <Link className="nav-link" to="/current/kuressaare">Kuressaare</Link>

@@ -3,7 +3,7 @@ import DataComponent from './DataComponent';
 import MapComponent from './MapComponent';
 import { getForecastWeather } from '../apiServices/weatherServices';
 import { Tabs, Tab } from 'react-bootstrap';
-import { moment } from 'moment';
+import  moment  from 'moment';
 
 export default function ForecastComponent(props) {
 
@@ -19,12 +19,22 @@ export default function ForecastComponent(props) {
         const dataByDays = [];
 
         for (const [index, data] of response.list.entries()) {
-          oneDay.push(data);
 
-          if ((index + 1) % 8 === 0) {
+          const dayOfDate = moment.unix(data.dt).date();
+          const prevDayOfDate = oneDay.length ? moment.unix(oneDay[oneDay.length - 1].dt).date() : dayOfDate;
+
+          if(dayOfDate === prevDayOfDate) {
+            oneDay.push(data);
+          } else {
             dataByDays.push(oneDay);
             oneDay = [];
+            oneDay.push(data);
           }
+
+          // if ((index + 1) % 8 === 0) {
+          //   dataByDays.push(oneDay);
+          //   oneDay = [];
+          // }
         }
         setDays(dataByDays);
 
@@ -38,17 +48,17 @@ export default function ForecastComponent(props) {
     if (!props.form || props.cookie) {
       get();
     }
-  }, [props.form]);
+  }, [props.form, props.cookie]);
 
 //moment.unix(day[0].dt).date()
   return (
     <>
       <Tabs className="mb-3 mt-2">
         {days.map((day, index1) => (
-          <Tab eventKey={index1} key={index1} title={"Day " + (index1 + moment.unix(day[0].dt).date())}>
+          <Tab eventKey={index1} key={index1} title={"Day " + moment.unix(day[0].dt).date()}>
             <Tabs className="mb-3 mt-2">
               {day.map((data, index2) => (
-                <Tab eventKey={index2} key={index2} title={data.dt_txt}>
+                <Tab eventKey={index2} key={index2} title={moment.unix(data.dt).format('HH:mm')}>
                   <DataComponent {...props} weather={data} />
                 </Tab>
               ))}

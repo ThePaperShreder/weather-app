@@ -1,8 +1,6 @@
 import React from "react";
-import { Container } from "react-bootstrap";
 import { GoogleMap, useJsApiLoader, InfoWindow } from '@react-google-maps/api';
-import {google_api_key} from '../keys';
-import cities from "../Header/Cities.json";
+
 
 
 const containerStyle = {
@@ -13,7 +11,7 @@ const containerStyle = {
 export default function MapComponent (props) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: google_api_key
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_API_KEY
       });
       const center = {
         lat: props.weather.coord.lat,
