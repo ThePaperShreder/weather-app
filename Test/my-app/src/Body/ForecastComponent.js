@@ -20,8 +20,9 @@ export default function ForecastComponent(props) {
 
         for (const [index, data] of response.list.entries()) {
 
-          const dayOfDate = moment.unix(data.dt).date();
-          const prevDayOfDate = oneDay.length ? moment.unix(oneDay[oneDay.length - 1].dt).date() : dayOfDate;
+          data.dt = data.dt + response.city.timezone;
+          const dayOfDate = moment.unix(data.dt).utc().date();
+          const prevDayOfDate = oneDay.length ? moment.unix(oneDay[oneDay.length - 1].dt).utc().date() : dayOfDate;
 
           if(dayOfDate === prevDayOfDate) {
             oneDay.push(data);
@@ -58,7 +59,7 @@ export default function ForecastComponent(props) {
           <Tab eventKey={index1} key={index1} title={"Day " + moment.unix(day[0].dt).date()}>
             <Tabs className="mb-3 mt-2">
               {day.map((data, index2) => (
-                <Tab eventKey={index2} key={index2} title={moment.unix(data.dt).format('HH:mm')}>
+                <Tab eventKey={index2} key={index2} title={moment.unix(data.dt).utc().format('HH:mm')}>
                   <DataComponent {...props} weather={data} />
                 </Tab>
               ))}
