@@ -2,10 +2,12 @@ import React, {useRef, useEffect} from "react";
 import { Container, Form, Col, Row } from 'react-bootstrap';
 import cities from './Cities.json';
 import dataTypes from './type.json';
+import { useLocation } from 'react-router-dom';
 
 export default function FormComponent(props) {
 
   const formElement = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     if(props.form === null && !props.cookie) {
@@ -37,7 +39,7 @@ export default function FormComponent(props) {
                   <Col>
                       <Form.Group className="mb-3" controlId="city">
                           <Form.Label>Choose city</Form.Label>
-                          <Form.Select defaultValue={(props.cookie || {}).city || props.selectedCity} name="city" aria-label="Default select example">
+                          <Form.Select disabled={!!location.pathname.match('current')} defaultValue={(props.cookie || {}).city || props.selectedCity} name="city" aria-label="Default select example">
                               <option>Open this select menu</option>
                               {cities.map((city, i) => 
                                       <option value={i} key={city.name}>{city.name}</option>
