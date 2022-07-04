@@ -20,6 +20,7 @@ export default function ForecastComponent(props) {
 
         for (const [index, data] of response.list.entries()) {
 
+          delete data.main.temp_kf;
           data.dt = data.dt + response.city.timezone;
           const dayOfDate = moment.unix(data.dt).utc().date();
           const prevDayOfDate = oneDay.length ? moment.unix(oneDay[oneDay.length - 1].dt).utc().date() : dayOfDate;
